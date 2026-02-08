@@ -1,0 +1,593 @@
+html {
+    scroll-behavior: smooth; /* Esto hace que al navegar, la página se deslice */
+}
+
+/* === PALETA "SOMBRA DE VOLCÁN" === */
+:root {
+    /* El Fondo: Gris Carbón muy oscuro (casi negro, pero no puro) */
+    --bg-color: #121212;
+    
+    /* Las Tarjetas: Un gris un poco más claro para que se distingan */
+    --card-bg: #1e1e1e;
+    
+    /* El Texto: "Blanco Hueso" (para que no lastime la vista como el blanco puro) */
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+    
+    /* El Acento: "Ámbar Dorado" (como la luz en tu telaraña) */
+    --accent-color: #ffc107; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    background-color: var(--bg-color); /* AHORA ES OSCURO */
+    color: var(--text-main); /* AHORA EL TEXTO ES CLARO */
+    line-height: 1.6;
+}
+
+/* === TIPOGRAFÍA === */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 0.5rem;
+    color: #ffffff; /* Los títulos en blanco puro para resaltar */
+}
+
+/* === SECCIÓN HERO (LA PORTADA) === */
+.hero {
+    height: 100vh;
+    /* Degradado más oscuro para este tema */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), 
+                url('./assets/telarana-hero.jpg');
+    background-size: 150%; 
+    background-position: center 30%;
+    background-attachment: fixed;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    text-shadow: 0px 4px 10px rgba(0,0,0,0.8); /* Sombra más fuerte */
+    margin: 0;
+    animation: fadeIn 2s ease-in;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    color: var(--accent-color); /* EL SUBTÍTULO AHORA ES DORADO */
+    border-top: 1px solid var(--accent-color);
+    display: inline-block;
+    padding-top: 10px;
+}
+
+/* === SECCIÓN INTRO === */
+.intro {
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.intro h2 {
+    font-size: 2.5rem;
+    color: var(--accent-color); /* TÍTULOS EN DORADO */
+}
+
+.intro p {
+    font-size: 1.2rem;
+    color: var(--text-muted); /* Texto gris suave */
+}
+
+/* === GRILLA DE ARTÍCULOS === */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem 5%;
+}
+
+/* Arreglo para el enlace de la tarjeta */
+.articles-grid > a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+}
+.articles-grid > a .card { height: 100%; }
+
+/* === TARJETAS EN MODO OSCURO === */
+.card {
+    background: var(--card-bg); /* GRIS OSCURO */
+    border: 1px solid #333; /* Borde sutil */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); /* Sombra negra */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+    border-color: var(--accent-color); /* AL PASAR EL MOUSE BRILLA DORADO */
+}
+
+.card-img {
+    height: 200px;
+    width: 100%;
+    opacity: 0.9; /* Un toque de estilo */
+}
+
+.card h3 {
+    padding: 1rem 1rem 0 1rem;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.card p {
+    padding: 0 1rem 1.5rem 1rem;
+    color: var(--text-muted);
+}
+
+/* === PIE DE PÁGINA === */
+footer {
+    background-color: black;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #333;
+}
+
+/* === ANIMACIÓN === */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === ESTILOS EXTRA PÁGINA ARTÍCULO === */
+nav { padding: 20px; background: var(--bg-color); border-bottom: 1px solid #333; }
+.back-link { text-decoration: none; color: var(--accent-color); font-weight: bold; }
+
+.article-header { text-align: center; padding: 8rem 1rem 2rem; max-width: 800px; margin: 0 auto; }
+.category { color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; font-weight: bold; }
+.meta { color: var(--text-muted); font-style: italic; }
+
+.article-hero-img img { width: 100%; height: 60vh; object-fit: cover; }
+
+.article-content {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+    font-size: 1.2rem;
+    color: var(--text-main); /* TEXTO CLARO */
+}
+
+.lead::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    float: left;
+    line-height: 0.8;
+    margin-right: 10px;
+    color: var(--accent-color); /* LETRA CAPITAL DORADA */
+}
+
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin: 2rem 0;
+    padding-left: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #fff;
+    font-style: italic;
+    background: #1a1a1a; /* Fondo cita oscuro */
+    padding: 20px;
+}
+
+/* === BARRA DE NAVEGACIÓN === */
+.navbar {
+    position: fixed; /* Se queda pegada arriba */
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: rgba(18, 18, 18, 0.95); /* Casi negro, un poco transparente */
+    backdrop-filter: blur(10px); /* Efecto vidrio borroso moderno */
+    z-index: 1000; /* Asegura que esté encima de todo */
+    box-sizing: border-box;
+    border-bottom: 1px solid #333;
+}
+
+.logo {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: color 0.3s ease; /* Suaviza el cambio de color */
+    cursor: pointer;
+}
+
+.logo:hover {
+    color: #a8d0e6; /* El azulito hielo que te gustó */
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-main);
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color); /* Se pone dorado al pasar el mouse */
+}
+
+/* === SECCIÓN MISIÓN (SOBRE EL PROYECTO) === */
+.about-section {
+    padding: 6rem 2rem;
+    /* Un gris apenas más claro que el fondo negro para separar secciones visualmente */
+    background-color: #1a1a1a; 
+    border-top: 1px solid #333;
+}
+
+.about-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap; /* Se adapta si ven la web en celular */
+}
+
+/* Estilo de la imagen del Manifiesto */
+.about-img {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-img img {
+    width: 100%;
+    max-width: 400px; /* Tamaño controlado */
+    height: auto;
+    border-radius: 4px; /* Bordes sutilmente redondeados, estilo foto impresa */
+    border: 1px solid #444; 
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Sombra difusa para darle profundidad */
+    filter: sepia(20%) contrast(1.1); /* Filtro sutil para que combine con el tema "Volcán" */
+}
+
+/* Estilo del Texto */
+.about-text {
+    flex: 1.5; /* El texto ocupa más espacio que la foto */
+    min-width: 300px;
+}
+
+.about-text h3 {
+    color: var(--accent-color); /* Título Dorado */
+    font-size: 2.5rem;
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+.about-text p {
+    color: var(--text-main);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8; /* Espaciado para lectura cómoda */
+}
+
+.about-text strong {
+    color: white; /* Resaltar palabras clave en blanco brillante */
+}
+
+/* Botón "Empezar a Leer" */
+.btn-primary {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 12px 30px;
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--accent-color);
+    color: #121212; /* Texto oscuro sobre fondo dorado */
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.4); /* Brillo al pasar el mouse */
+}
+
+/* === FOOTER DE LUJO === */
+footer {
+    background-color: #050505; /* Negro profundo */
+    color: #fff;
+    padding: 4rem 2rem;
+    border-top: 1px solid #222;
+    margin-top: auto; /* Empuja el footer al fondo */
+}
+
+.footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales */
+    gap: 3rem;
+    text-align: center;
+}
+
+/* Títulos con la línea dorada abajo */
+.footer-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    border-bottom: 1px solid #d4af37; /* El color dorado */
+    padding-bottom: 5px;
+    color: #fff;
+}
+
+/* Columna del medio (Editorial) */
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #222; /* Línea sutil separadora */
+    padding: 0.8rem 0;
+    font-size: 0.85rem;
+}
+
+.meta-label {
+    color: #666; /* Gris para las etiquetas */
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.meta-value {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.meta-value:hover {
+    color: #d4af37;
+}
+
+/* Columna Legal */
+.legal-link {
+    color: #666;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+/* Responsivo para celular */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr; /* 1 sola columna en cel */
+        text-align: center;
+    }
+    .meta-row {
+        justify-content: center; /* Centrar textos en cel */
+        gap: 1rem;
+    }
+}
+
+/* Estilos para la sección de Créditos */
+.credit-line {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between; /* Separa el rol del nombre */
+    border-bottom: 1px solid #222;
+    padding-bottom: 5px;
+}
+
+.role { color: #666; font-size: 0.85rem; text-transform: uppercase; }
+.name { color: #ccc; }
+
+.mini-link {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    opacity: 0.8;
+}
+.mini-link:hover { opacity: 1; text-decoration: underline; }
+
+/* Estilos para el contacto */
+.contact-email {
+    display: inline-block;
+    margin-top: 10px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    background: #1a1a1a;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.contact-email:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 2rem;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color); /* Se ponen dorados al pasar el mouse */
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #111;
+    padding-top: 1rem;
+    font-size: 0.8rem;
+}
+
+/* === SECCIÓN PAUSA VISUAL === */
+.visual-break {
+    position: relative;
+    height: 400px; /* Altura fija, ni muy grande ni muy chica */
+    
+    /* Fondo Parallax: Cambia la URL por una foto tuya de textura (roca, hoja, microscopio) */
+    background: url('./assets/montana-niebla.jpg');
+    background-size: cover;
+    background-attachment: fixed; /* El efecto mágico de que la foto se queda quieta */
+    background-position: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Capa oscura para que el texto resalte */
+.visual-break .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Oscuridad al 60% */
+}
+
+.quote-container {
+    position: relative; /* Para que quede encima de la capa oscura */
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.quote-container blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    font-style: italic;
+    border: none; /* Quitamos el borde lateral que pusimos antes */
+    background: transparent; /* Sin fondo gris */
+    padding: 0;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.quote-container cite {
+    display: block;
+    margin-top: 1.5rem;
+    color: var(--accent-color); /* Tu dorado volcán */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    font-style: normal;
+}
+
+/* Ajuste para imágenes reales en las tarjetas */
+.card-img-real {
+    width: 100%;
+    height: 200px; /* Misma altura que tenían los cuadros de color */
+    object-fit: cover; /* La imagen se recorta para llenar el espacio sin deformarse */
+}
+
+/* EFECTO SCROLL NAVBAR */
+.navbar {
+    transition: background-color 0.4s ease, padding 0.4s ease; /* Suaviza el cambio */
+}
+
+/* Cuando el JS detecta que bajaste, activa esto: */
+.navbar.scrolled {
+    background-color: #0d0d0d; /* Negro casi puro */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Sombrita elegante */
+    padding: 0.8rem 2rem; /* Se hace un poquito más compacta */
+}
+
+/* === MENÚ PARA MÓVIL (RESPONSIVE) === */
+
+/* Estilo del botón (las 3 rayitas) */
+.menu-toggle {
+    display: none; /* Oculto en PC */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+    transition: 0.4s;
+}
+
+/* Cuando la pantalla es menor a 768px (Tablets y Celulares) */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: flex; /* Mostrar botón */
+    }
+
+    .nav-links {
+        display: none; /* Ocultar menú normal */
+        width: 100%;
+        position: absolute;
+        top: 100%; /* Justo debajo de la barra */
+        left: 0;
+        background-color: #0d0d0d; /* Fondo negro */
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 0;
+        border-top: 1px solid #333;
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0; /* Más espacio para dedos gordos */
+    }
+
+    /* Esta clase la activará JavaScript */
+    .nav-links.active {
+        display: flex;
+    }
+}
