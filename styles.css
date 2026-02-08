@@ -591,3 +591,11 @@ footer {
         display: flex;
     }
 }
+
+/* === CORRECCIÓN PARA CELULARES (PORTADA) === */
+.hero {
+    background-repeat: no-repeat;     /* ¡Prohibido repetir! */
+    background-size: cover;           /* Estírate para cubrir todo */
+    background-position: center;      /* Céntrate siempre */
+    background-attachment: scroll;    /* Esto evita saltos raros en iPhone/Android */
+}
