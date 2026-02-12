@@ -224,6 +224,15 @@ blockquote {
     color: #a8d0e6; /* El azulito hielo que te gustó */
 }
 
+/* Esto hace que el enlace dentro del logo no se vea azul ni subrayado */
+.logo a {
+    text-decoration: none;  /* Adiós subrayado */
+    color: inherit;         /* Hereda el color blanco (o el azul al pasar el mouse) */
+    display: block;         /* Hace que todo el espacio sea cliqueable */
+    width: 100%;            /* Ocupa todo el ancho disponible */
+    height: 100%;           /* Ocupa todo el alto disponible */
+}
+
 
 .nav-links {
     list-style: none;
