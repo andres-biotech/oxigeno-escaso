@@ -221,7 +221,7 @@ blockquote {
 }
 
 .logo:hover {
-    color: #a8d0e6; /* El azulito hielo que te gustó */
+    color: #D4AF37; /* dorado */
 }
 
 /* Esto hace que el enlace dentro del logo no se vea azul ni subrayado */
@@ -607,4 +607,34 @@ footer {
     background-size: cover;           /* Estírate para cubrir todo */
     background-position: center;      /* Céntrate siempre */
     background-attachment: scroll;    /* Esto evita saltos raros en iPhone/Android */
+}
+
+/* === BARRA DE PROGRESO DE LECTURA === */
+.progress-container {
+    width: 100%;
+    height: 4px; /* Qué tan gordita quieres la línea */
+    background: transparent; /* Fondo invisible */
+    position: fixed; /* Se queda pegada al hacer scroll */
+    top: 0; /* Hasta arriba de la pantalla */
+    left: 0;
+    z-index: 9999; /* Para que pase por encima de TODO */
+}
+
+.progress-bar {
+    height: 100%;
+    background: #d4af37; /* Dorado
+    width: 0%; /* Arranca en 0, el JS la hará crecer */
+    transition: width 0.1s; /* Movimiento fluido */
+}
+
+/* === EFECTO FADE-IN AL HACER SCROLL === */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px); /* Empieza 30px más abajo */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Movimiento suave de 0.8 segundos */
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0); /* Regresa a su posición original */
 }
