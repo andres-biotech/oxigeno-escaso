@@ -39,7 +39,7 @@ h1, h2, h3 {
     height: 100vh;
     /* Degradado más oscuro para este tema */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), 
-                url('./assets/telarana-hero.jpg');
+                url('./assets/telarana-hero.webp');
     background-size: 150%; 
     background-position: center 30%;
     background-attachment: fixed;
@@ -485,7 +485,7 @@ footer {
     height: 400px; /* Altura fija, ni muy grande ni muy chica */
     
     /* Fondo Parallax: Cambia la URL por una foto tuya de textura (roca, hoja, microscopio) */
-    background: url('./assets/montana-niebla.jpg');
+    background: url('./assets/montana-niebla.webp');
     background-size: cover;
     background-attachment: fixed; /* El efecto mágico de que la foto se queda quieta */
     background-position: center;
