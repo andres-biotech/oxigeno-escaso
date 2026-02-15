@@ -27,6 +27,18 @@ body {
     line-height: 1.6;
 }
 
+/* === SELECCIÓN DE TEXTO PERSONALIZADA === */
+::selection {
+    background-color: #D4AF37; /* Fondo dorado */
+    color: #000000; /* Texto negro */
+}
+
+/* Para navegadores basados en Mozilla (Firefox) */
+::-moz-selection {
+    background-color: #D4AF37;
+    color: #000000;
+}
+
 /* === TIPOGRAFÍA === */
 h1, h2, h3 {
     font-family: 'Playfair Display', serif;
@@ -637,4 +649,19 @@ footer {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0); /* Regresa a su posición original */
+}
+
+/* === SCROLLBAR PERSONALIZADA === */
+::-webkit-scrollbar {
+    width: 8px; /* Hace la barra más delgada y fina */
+}
+::-webkit-scrollbar-track {
+    background: #0a0a0a; /* Fondo casi negro que se funde con tu página */
+}
+::-webkit-scrollbar-thumb {
+    background: #D4AF37; /* Tu dorado característico */
+    border-radius: 10px; /* Bordes redondeados elegantes */
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #b5952f; /* Un dorado un poco más oscuro si le pasan el mouse */
 }
