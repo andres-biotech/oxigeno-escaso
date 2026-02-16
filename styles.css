@@ -100,22 +100,44 @@ h1, h2, h3 {
     color: var(--text-muted); /* Texto gris suave */
 }
 
-/* === GRILLA DE ARTÍCULOS === */
-.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem 5%;
+/* === CARRUSEL HORIZONTAL DE ARTÍCULOS === */
+.carrusel-articulos {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 20px;
+    
+    /* Efecto de "imán" al deslizar */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
-/* Arreglo para el enlace de la tarjeta */
-.articles-grid > a {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    height: 100%;
+/* Diseño de la barra de desplazamiento del carrusel */
+.carrusel-articulos::-webkit-scrollbar {
+    height: 8px; 
 }
-.articles-grid > a .card { height: 100%; }
+.carrusel-articulos::-webkit-scrollbar-track {
+    background: #0a0a0a; 
+    border-radius: 10px;
+}
+.carrusel-articulos::-webkit-scrollbar-thumb {
+    background: #D4AF37; 
+    border-radius: 10px;
+}
+
+/* Ajuste de las tarjetas individuales para que no se aplasten */
+.carrusel-articulos > a {
+    flex: 0 0 320px; /* Esto dicta el ancho de cada tarjeta. Puedes subirlo a 350px si las ves muy delgadas */
+    scroll-snap-align: start; /* Aquí se "engancha" el scroll */
+}
+
+/* Hace que todas las tarjetas tengan exactamente la misma altura, sin importar el texto */
+.carrusel-articulos .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
 
 /* === TARJETAS EN MODO OSCURO === */
 .card {
@@ -664,4 +686,10 @@ footer {
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #b5952f; /* Un dorado un poco más oscuro si le pasan el mouse */
+}
+/* === CENTRAR CARRUSEL SOLO EN PANTALLAS GRANDES === */
+@media (min-width: 1350px) {
+    .carrusel-articulos {
+        justify-content: center;
+    }
 }
