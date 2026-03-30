@@ -864,3 +864,26 @@ details[open] summary.referencias-title::after {
 .next-article:hover .next-article-overlay {
     background: rgba(0,0,0,0.5); /* Se aclara un poco */
 }
+
+/* ========================================= */
+/* === BLINDAJE MÓVIL (TOOLTIPS) === */
+/* ========================================= */
+@media (max-width: 768px) {
+    .tooltip .tooltiptext {
+        position: fixed; /* Lo despegamos de la palabra */
+        bottom: 30px; /* Aparece en la parte de abajo de la pantalla */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%; /* Ocupa casi todo el ancho de la pantalla */
+        max-width: 350px;
+        text-align: center;
+        font-size: 0.95rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+        z-index: 9999;
+    }
+
+    /* Ocultamos el triangulito en celular porque ya no apunta a la palabra */
+    .tooltip .tooltiptext::after {
+        display: none; 
+    }
+}
