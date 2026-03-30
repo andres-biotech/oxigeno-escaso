@@ -400,9 +400,10 @@ footer {
 /* Columna del medio (Editorial) */
 .meta-row {
     display: flex;
+    flex-wrap: wrap; /* ¡Añade esto! Permite que tu nombre baje suavemente si se le acaba el espacio */
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #222; /* Línea sutil separadora */
+    border-bottom: 1px solid #222;
     padding: 0.8rem 0;
     font-size: 0.85rem;
 }
@@ -692,4 +693,174 @@ footer {
     .carrusel-articulos {
         justify-content: center;
     }
+}
+
+/* === TOOLTIPS CIENTÍFICOS === */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dashed var(--accent-color); /* Subrayado punteado dorado */
+    cursor: help; /* Cambia el cursor a un signo de interrogación */
+    color: var(--text-main);
+    font-weight: bold;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 250px;
+    background-color: #1a1a1a;
+    color: #fff;
+    text-align: left;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: normal;
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    
+    /* Posición flotante arriba de la palabra */
+    position: absolute;
+    z-index: 10;
+    bottom: 125%; 
+    left: 50%;
+    transform: translateX(-50%);
+    
+    /* Efecto de aparición suave */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Triangulito del globo */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--accent-color) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* === REFERENCIAS PREMIUM === */
+.referencias-section {
+    max-width: 700px;
+    /* CAMBIA ESTA LÍNEA: 4rem arriba, automático a los lados, 1rem abajo */
+    margin: 4rem auto 1rem auto; 
+    padding: 0 1.5rem;
+}
+
+details.referencias-box {
+    background: #121212;
+    border: 1px solid #333;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: border-color 0.3s;
+}
+
+details.referencias-box:hover {
+    border-color: var(--accent-color);
+}
+
+summary.referencias-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    list-style: none; /* Quita la flechita por defecto */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+summary.referencias-title::-webkit-details-marker {
+    display: none; /* Quita flechita en Chrome/Safari */
+}
+
+summary.referencias-title::after {
+    content: '+'; /* Ponemos un símbolo de más elegante */
+    font-size: 1.5rem;
+    color: #666;
+}
+
+details[open] summary.referencias-title::after {
+    content: '-'; /* Cambia a menos cuando está abierto */
+}
+
+.referencias-list {
+    margin-top: 15px;
+    padding-left: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    border-top: 1px solid #222;
+    padding-top: 15px;
+}
+
+/* === BUCLE INFINITO (SIGUIENTE ARTÍCULO) === */
+.next-article {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* CAMBIA ESTA LÍNEA: De 4rem a 1rem (o ponle 0 si quieres que esté súper pegado) */
+    margin-top: 1rem; 
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.next-article-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.8s ease;
+}
+
+.next-article-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); /* Oscurece la foto */
+    z-index: 2;
+    transition: background 0.3s ease;
+}
+
+.next-article-content {
+    position: relative;
+    z-index: 3;
+    padding: 0 20px;
+}
+
+.next-label {
+    display: block;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+.next-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #fff;
+    margin: 0;
+}
+
+/* Efectos al pasar el mouse */
+.next-article:hover .next-article-bg {
+    transform: scale(1.05); /* La foto se acerca suavemente */
+}
+
+.next-article:hover .next-article-overlay {
+    background: rgba(0,0,0,0.5); /* Se aclara un poco */
 }
