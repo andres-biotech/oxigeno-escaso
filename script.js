@@ -66,3 +66,36 @@ const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll
 faders.forEach(fader => {
     appearOnScroll.observe(fader);
 });
+
+/* ========================================= */
+/* === TERMINAL DE ACCESO (TYPEWRITER) === */
+/* ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+    const preloader = document.getElementById("preloader");
+    const typewriterElement = document.getElementById("typewriter");
+    
+    // Si no hay preloader en la página actual, ignorar y salir
+    if (!preloader || !typewriterElement) return;
+
+    // Tu frase de acceso
+    const textToType = "> Ajustando presión..."; 
+    let i = 0;
+
+    function typeWriter() {
+        if (i < textToType.length) {
+            typewriterElement.innerHTML += textToType.charAt(i);
+            i++;
+            // AJUSTE 1: Subimos de 40ms a 60ms para un tecleo más firme y legible
+            setTimeout(typeWriter, 90); 
+        } else {
+            // AJUSTE 2: Aumentamos a 1500ms (1.5 segundos) de pausa térmica. 
+            // Aquí el navegador tiene tiempo de sobra para cargar fotos pesadas y fuentes.
+            setTimeout(() => {
+                preloader.classList.add("fade-out-preloader");
+            }, 1500); 
+        }
+    }
+
+    // Iniciar el efecto de escritura con un ligero retraso de 400ms al cargar
+    setTimeout(typeWriter, 400);
+});
