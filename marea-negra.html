@@ -29,20 +29,11 @@
 </head> <body class="article-page">
 
     <nav class="navbar">
-       <div class="logo">
-        <a href="index.html">Oxígeno Escaso</a>
-        </div>
-        
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-
+        <div class="logo"><a href="index.html" style="text-decoration: none; color: inherit;">Oxígeno Escaso</a></div> 
         <ul class="nav-links">
-            <li><a href="index.html#inicio">Inicio</a></li>
-            <li><a href="index.html#articulos">Artículos</a></li>
-            <li><a href="index.html#mision">Misión</a></li>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="manifiesto.html">Manifiesto</a></li>
+            <li><a href="boveda.html">Archivo</a></li>
         </ul>
     </nav>
     
@@ -149,11 +140,26 @@
             <div class="footer-column">
                 <h4>Legal</h4>
                 <p>&copy; 2026 Oxígeno Escaso.</p>
-                <p><a href="#" style="color:#666;">Licencia CC BY-NC 4.0</a></p>
+                <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.es" target="_blank" rel="noopener noreferrer" class="legal-link">Licencia CC BY-NC 4.0</a>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    
+    <nav class="mobile-bottom-bar">
+        <a href="index.html" class="nav-item">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <span>Inicio</span>
+        </a>
+        <a href="manifiesto.html" class="nav-item">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+            <span>Manifiesto</span>
+        </a>
+        <a href="boveda.html" class="nav-item">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M10 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2h-8l-2-2z"/></svg>
+            <span>Archivo</span>
+        </a>
+    </nav>
 </body>
 </html>

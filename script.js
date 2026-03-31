@@ -1,3 +1,23 @@
+// ==========================================
+// CONTROL DEL PRE-LOADER (1 VEZ POR SESIÓN)
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const preloader = document.getElementById("preloader");
+    
+    if (preloader) {
+        // Si el navegador recuerda que ya vimos el preloader hoy...
+        if (sessionStorage.getItem("preloaderVisto")) {
+            preloader.style.display = "none"; // Lo aniquilamos al instante
+        } else {
+            // Si es la primera vez, marcamos que ya lo vio para la próxima
+            sessionStorage.setItem("preloaderVisto", "true");
+            
+            // (El resto de tu código del preloader y el typewriter seguirá 
+            // funcionando normal y se desvanecerá cuando termine)
+        }
+    }
+});
+
 // Esperar a que el documento cargue
 document.addEventListener('DOMContentLoaded', () => {
     
