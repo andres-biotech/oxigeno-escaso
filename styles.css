@@ -1003,11 +1003,29 @@ details[open] summary.referencias-title::after {
     text-align: center; /* Asegura que títulos en hero se centren */
 }
 
+/* 1. La capa oscura se queda atrás */
 .overlay-hero {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(10, 10, 10, 0.75); /* Un poco más oscuro para resaltar el oro */
-    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* (O el color que ya le tengas puesto) */
+    z-index: 1; 
+}
+
+/* 2. El contenido (texto y botón) salta hacia adelante */
+.hero-content {
+    position: relative;
+    z-index: 2; /* Esto es la magia que revive tu botón y saca el texto a la luz */
+}
+
+/* 3. Forzamos el color blanco en esta portada específica */
+.hero-drogas h1, 
+.hero-drogas .subtitle, 
+.hero-drogas .category-badge {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
 }
 
 .hero-estelar .hero-content {
@@ -1214,4 +1232,36 @@ details[open] summary.referencias-title::after {
 
 .boveda-grid .card-content {
     flex-grow: 1; /* Empuja el texto para que las tarjetas midan lo mismo de alto */
+}
+
+/* --- CONFIGURACIÓN DEL HERO PARA DROGAS PARA EL CEREBRO --- */
+.hero-drogas {
+    /* Asegúrate de que esta ruta apunte a tu imagen de bacterias o al cerebro */
+    background-image: url('./assets/drogas-cerebro-hero.webp'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: #ffffff; /* Fuerza a que el texto base sea blanco */
+}
+
+/* Forzamos el color blanco y le damos una sombra para que resalte sobre el fondo */
+.hero-drogas h1, 
+.hero-drogas .subtitle {
+    color: #ffffff !important; 
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* --- AJUSTES PARA PANTALLAS DE CELULAR (MÓVIL) --- */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem !important; /* Reduce el tamaño del título drásticamente */
+        line-height: 1.2; /* Junta un poco los renglones */
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content .subtitle {
+        font-size: 0.95rem !important; /* Reduce el subtítulo */
+        line-height: 1.4;
+        padding: 0 10px; /* Evita que el texto toque las orillas del teléfono */
+    }
 }
