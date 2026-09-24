@@ -714,7 +714,7 @@ footer {
 
 .progress-bar {
     height: 100%;
-    background: #d4af37; /* Dorado
+    background: #d4af37; /* Dorado */
     width: 0%; /* Arranca en 0, el JS la hará crecer */
     transition: width 0.1s; /* Movimiento fluido */
 }
