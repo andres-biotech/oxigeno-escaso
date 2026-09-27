@@ -15,7 +15,7 @@ html {
     --text-muted: #a0a0a0;
     
     /* El Acento: "Ámbar Dorado" (como la luz en tu telaraña) */
-    --accent-color: #ffc107; 
+    --accent-color: #D4AF37; 
 }
 
 body {
@@ -29,13 +29,13 @@ body {
 
 /* === SELECCIÓN DE TEXTO PERSONALIZADA === */
 ::selection {
-    background-color: #D4AF37; /* Fondo dorado */
+    background-color: var(--accent-color); /* Fondo dorado */
     color: #000000; /* Texto negro */
 }
 
 /* Para navegadores basados en Mozilla (Firefox) */
 ::-moz-selection {
-    background-color: #D4AF37;
+    background-color: var(--accent-color);
     color: #000000;
 }
 
@@ -52,9 +52,6 @@ h1, h2, h3 {
     /* Degradado más oscuro para este tema */
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)), 
                 url('./assets/telarana-hero.webp');
-    background-size: 150%; 
-    background-position: center 30%;
-    background-attachment: fixed;
     
     display: flex;
     align-items: center;
@@ -122,7 +119,7 @@ h1, h2, h3 {
     border-radius: 10px;
 }
 .carrusel-articulos::-webkit-scrollbar-thumb {
-    background: #D4AF37; 
+    background: var(--accent-color); 
     border-radius: 10px;
 }
 
@@ -173,16 +170,6 @@ h1, h2, h3 {
     color: var(--text-muted);
 }
 
-/* === PIE DE PÁGINA === */
-footer {
-    background-color: black;
-    color: var(--text-muted);
-    text-align: center;
-    padding: 2rem;
-    margin-top: 2rem;
-    border-top: 1px solid #333;
-}
-
 /* === ANIMACIÓN === */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -229,6 +216,7 @@ blockquote {
 }
 
 /* === BARRA DE NAVEGACIÓN === */
+/* Fusionado: incluye ya la transición de scroll que antes vivía en un bloque aparte */
 .navbar {
     position: fixed; /* Se queda pegada arriba */
     top: 0;
@@ -242,6 +230,7 @@ blockquote {
     z-index: 1000; /* Asegura que esté encima de todo */
     box-sizing: border-box;
     border-bottom: 1px solid #333;
+    transition: background-color 0.4s ease, padding 0.4s ease; /* Suaviza el cambio al hacer scroll */
 }
 
 .logo {
@@ -255,7 +244,7 @@ blockquote {
 }
 
 .logo:hover {
-    color: #D4AF37; /* dorado */
+    color: var(--accent-color); /* dorado */
 }
 
 /* Esto hace que el enlace dentro del logo no se vea azul ni subrayado */
@@ -369,6 +358,9 @@ blockquote {
 }
 
 /* === FOOTER DE LUJO === */
+/* NOTA: antes había un segundo bloque "footer {...}" más arriba en el archivo original,
+   con fondo negro sólido y sin grid. Cada una de sus propiedades era sobreescrita por
+   este bloque, así que estaba 100% muerto. Se eliminó. */
 footer {
     background-color: #050505; /* Negro profundo */
     color: #fff;
@@ -392,7 +384,7 @@ footer {
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
     display: inline-block;
-    border-bottom: 1px solid #d4af37; /* El color dorado */
+    border-bottom: 1px solid var(--accent-color); /* El color dorado */
     padding-bottom: 5px;
     color: #fff;
 }
@@ -422,7 +414,7 @@ footer {
 }
 
 .meta-value:hover {
-    color: #d4af37;
+    color: var(--accent-color);
 }
 
 /* Columna Legal */
@@ -484,14 +476,6 @@ footer {
     color: #000;
 }
 
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid #1a1a1a;
-    padding-top: 2rem;
-    font-size: 0.8rem;
-    color: #555;
-}
-
 .social-links {
     display: flex;
     gap: 1.5rem;
@@ -507,11 +491,15 @@ footer {
     color: var(--accent-color); /* Se ponen dorados al pasar el mouse */
 }
 
+/* Fusionado: antes había dos bloques ".footer-bottom" con border-top y padding-top
+   distintos (el segundo ganaba en la cascada). Se dejó un solo bloque con los valores
+   que efectivamente estaban aplicándose, más el color que solo vivía en el primero. */
 .footer-bottom {
     text-align: center;
     border-top: 1px solid #111;
     padding-top: 1rem;
     font-size: 0.8rem;
+    color: #555;
 }
 
 /* === SECCIÓN PAUSA VISUAL === */
@@ -576,11 +564,6 @@ footer {
     width: 100%;
     height: 200px; /* Misma altura que tenían los cuadros de color */
     object-fit: cover; /* La imagen se recorta para llenar el espacio sin deformarse */
-}
-
-/* EFECTO SCROLL NAVBAR */
-.navbar {
-    transition: background-color 0.4s ease, padding 0.4s ease; /* Suaviza el cambio */
 }
 
 /* Cuando el JS detecta que bajaste, activa esto: */
@@ -655,7 +638,7 @@ footer {
         left: 0;
         width: 100%;
         background-color: #080808;
-        border-top: 2px solid #D4AF37; /* Línea dorada más gruesa */
+        border-top: 2px solid var(--accent-color); /* Línea dorada más gruesa */
         box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.9), 0 -2px 10px rgba(212, 175, 55, 0.15); /* Sombra oscura con un sutil resplandor dorado */
         padding: 0.6rem 0;
         z-index: 1000;
@@ -689,11 +672,11 @@ footer {
     .mobile-bottom-bar a.nav-item:hover, 
     .mobile-bottom-bar a.nav-item:active,
     .mobile-bottom-bar a.nav-item.active {
-        color: #D4AF37;
+        color: var(--accent-color);
     }
 }
 
-/* === CORRECCIÓN PARA CELULARES (PORTADA) === */
+/* === COMPORTAMIENTO DEL FONDO DEL HERO (DECISIÓN: FONDO PLANO, SIN PARALLAX) === */
 .hero {
     background-repeat: no-repeat;     /* ¡Prohibido repetir! */
     background-size: cover;           /* Estírate para cubrir todo */
@@ -714,7 +697,7 @@ footer {
 
 .progress-bar {
     height: 100%;
-    background: #d4af37; /* Dorado */
+    background: var(--accent-color); /* Dorado */
     width: 0%; /* Arranca en 0, el JS la hará crecer */
     transition: width 0.1s; /* Movimiento fluido */
 }
@@ -739,7 +722,7 @@ footer {
     background: #0a0a0a; /* Fondo casi negro que se funde con tu página */
 }
 ::-webkit-scrollbar-thumb {
-    background: #D4AF37; /* Tu dorado característico */
+    background: var(--accent-color); /* Tu dorado característico */
     border-radius: 10px; /* Bordes redondeados elegantes */
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -1039,8 +1022,8 @@ details[open] summary.referencias-title::after {
     display: inline-block;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.85rem;
-    color: #D4AF37; /* Dorado */
-    border: 1px solid #D4AF37;
+    color: var(--accent-color); /* Dorado */
+    border: 1px solid var(--accent-color);
     padding: 0.3rem 0.8rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
@@ -1048,7 +1031,7 @@ details[open] summary.referencias-title::after {
 }
 
 .cita-destacada {
-    color: #D4AF37 !important; /* Dorado editorial */
+    color: var(--accent-color) !important; /* Dorado editorial */
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem !important;
     margin-bottom: 1.5rem !important;
@@ -1084,7 +1067,7 @@ details[open] summary.referencias-title::after {
 /* Botones Dorados */
 .btn-primary-gold {
     display: inline-block;
-    background-color: #D4AF37;
+    background-color: var(--accent-color);
     color: #000;
     padding: 0.9rem 2rem;
     font-family: 'Courier New', Courier, monospace;
@@ -1106,8 +1089,8 @@ details[open] summary.referencias-title::after {
     padding: 0.8rem 1.8rem;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.9rem;
-    color: #D4AF37;
-    border: 1px solid #D4AF37;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
     text-decoration: none;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -1115,7 +1098,7 @@ details[open] summary.referencias-title::after {
 }
 
 .btn-outline-gold:hover {
-    background-color: #D4AF37;
+    background-color: var(--accent-color);
     color: #000;
 }
 
@@ -1150,7 +1133,7 @@ details[open] summary.referencias-title::after {
 
 .subtitle-gold {
     font-family: 'Courier New', Courier, monospace;
-    color: #D4AF37;
+    color: var(--accent-color);
     font-size: 1.1rem;
     letter-spacing: 1px;
 }
@@ -1159,7 +1142,7 @@ details[open] summary.referencias-title::after {
     font-size: 1.25rem;
     line-height: 1.8;
     font-weight: 700;
-    color: #D4AF37;
+    color: var(--accent-color);
     margin-bottom: 2.5rem;
 }
 
@@ -1172,7 +1155,7 @@ details[open] summary.referencias-title::after {
 
 .eje-block {
     margin-top: 3rem;
-    border-left: 2px solid #D4AF37;
+    border-left: 2px solid var(--accent-color);
     padding-left: 1.5rem;
 }
 

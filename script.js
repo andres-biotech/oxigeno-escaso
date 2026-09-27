@@ -33,17 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.remove('scrolled'); // ...si subes, quítala
         }
     });
-
-    // 2. MENÚ HAMBURGUESA (Nuevo)
-    const menuToggle = document.querySelector('#mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active'); // Muestra/Oculta el menú
-            menuToggle.classList.toggle('is-active'); // Opcional: Para animar el botón
-        });
-    }
 });
 
 // === BARRA DE PROGRESO ===
