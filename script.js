@@ -23,34 +23,53 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Seleccionar la barra de navegación
     const navbar = document.querySelector('.navbar');
-
-    // Escuchar el evento de "scroll" (cuando bajas con el mouse/dedo)
-    window.addEventListener('scroll', () => {
-        // Si has bajado más de 50 píxeles...
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled'); // ...agrega la clase "scrolled"
-        } else {
-            navbar.classList.remove('scrolled'); // ...si subes, quítala
-        }
-    });
-});
-
-// === BARRA DE PROGRESO ===
-window.addEventListener('scroll', () => {
-    // Calculamos cuánto hemos bajado
-    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    
-    // Calculamos la altura total del artículo
-    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    
-    // Sacamos el porcentaje
-    let scrolled = (winScroll / height) * 100;
-    
-    // Le pasamos ese porcentaje a la barra en CSS
     const myBar = document.getElementById("myBar");
-    if (myBar) {
-        myBar.style.width = scrolled + "%";
+    const parallaxBg = document.getElementById("parallaxBg");
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // === UN SOLO LISTENER DE SCROLL, LIMITADO CON requestAnimationFrame ===
+    // Antes había dos listeners de 'scroll' separados corriendo sin límite,
+    // y uno de ellos recalculaba el layout de toda la página en cada evento.
+    // Ahora se agrupa el trabajo y se ejecuta como máximo una vez por fotograma,
+    // que es lo que el navegador puede dibujar de todas formas.
+    let ticking = false;
+
+    function updateOnScroll() {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+        // Navbar: agrega/quita la clase "scrolled" pasados los 50px
+        if (navbar) {
+            navbar.classList.toggle('scrolled', scrollY > 50);
+        }
+
+        // Barra de progreso de lectura (solo existe en páginas de artículo)
+        if (myBar) {
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (scrollY / height) * 100 : 0;
+            myBar.style.width = scrolled + "%";
+        }
+
+        // Parallax de la sección "Pausa Visual" (reemplazo de background-attachment: fixed)
+        // Se mueve mucho más lento que el resto de la página, usando transform en vez de
+        // repintar el fondo — así el navegador solo compone, no recalcula la imagen.
+        if (parallaxBg && !reduceMotion) {
+            const rect = parallaxBg.parentElement.getBoundingClientRect();
+            // Solo calcula mientras la sección está cerca de la pantalla, para no gastar de más
+            if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                const speed = 0.3;
+                parallaxBg.style.transform = `translateY(${rect.top * speed}px)`;
+            }
+        }
+
+        ticking = false;
     }
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateOnScroll);
+            ticking = true;
+        }
+    }, { passive: true });
 });
 
 // === EFECTO FADE-IN ===

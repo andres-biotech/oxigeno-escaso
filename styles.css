@@ -503,19 +503,30 @@ footer {
 }
 
 /* === SECCIÓN PAUSA VISUAL === */
+/* Antes usaba background-attachment: fixed, que causaba tirones reales al hacer scroll
+   (obliga al navegador a repintar la imagen en cada fotograma). Se sustituyó por un
+   fondo movido con transform vía JS (ver script.js, #parallaxBg), que logra un efecto
+   de profundidad similar usando composición en vez de repintado — mucho más barato. */
 .visual-break {
     position: relative;
     height: 400px; /* Altura fija, ni muy grande ni muy chica */
-    
-    /* Fondo Parallax: Cambia la URL por una foto tuya de textura (roca, hoja, microscopio) */
-    background: url('./assets/montana-niebla.webp');
-    background-size: cover;
-    background-attachment: fixed; /* El efecto mágico de que la foto se queda quieta */
-    background-position: center;
+    overflow: hidden; /* Recorta el fondo sobredimensionado que necesita el parallax por transform */
     
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.visual-break-bg {
+    position: absolute;
+    top: -20%;
+    left: 0;
+    width: 100%;
+    height: 140%; /* Sobredimensionado para tener margen de movimiento sin dejar huecos */
+    background: url('./assets/montana-niebla.webp');
+    background-size: cover;
+    background-position: center;
+    will-change: transform; /* Le avisa al navegador que anime esto por composición */
 }
 
 /* Capa oscura para que el texto resalte */
@@ -1247,4 +1258,82 @@ details[open] summary.referencias-title::after {
         line-height: 1.4;
         padding: 0 10px; /* Evita que el texto toque las orillas del teléfono */
     }
+}
+
+/* =========================================
+   RESETEO Y PREVENCIÓN DE DESBORDAMIENTO
+   ========================================= */
+
+/* Obliga al navegador a incluir el padding dentro del 100% del ancho, no sumarlo extra */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Corta de tajo cualquier elemento rebelde que intente ensanchar la página en celular */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Contenedor principal que esquiva el menú */
+.poster-photo {
+    width: 100%;
+    max-width: 600px;
+    margin: 8rem auto 4rem auto; 
+    text-align: center;
+    padding: 0 1rem;
+}
+
+/* Configuraciones base de la imagen para que no se deforme */
+.poster-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 75vh;
+    object-fit: cover;
+}
+
+/* =========================================
+   ESTILO 1: Exhibición Fotográfica (Línea minimalista)
+   ========================================= */
+.estilo-1 {
+    display: inline-block;
+    position: relative;
+    background-color: #050505; /* Fondo casi negro puro */
+    padding: 1.5rem; /* El espacio de respiro negro entre la foto y la línea */
+    border: 1px solid #D4AF37; /* Tu dorado en una línea afilada y elegante */
+}
+
+/* =========================================
+   ESTILO 2: El Eclipse (Resplandor místico)
+   ========================================= */
+.estilo-2 {
+    display: inline-block;
+    position: relative;
+    /* Sombra dorada muy difuminada que parece luz emanando de atrás */
+    box-shadow: 0 0 45px rgba(212, 175, 55, 0.15), 
+                0 20px 40px rgba(0, 0, 0, 0.8);
+}
+.estilo-2 img {
+    border-radius: 4px; /* Un suavizado de bordes microscópico, muy premium */
+}
+
+/* =========================================
+   ESTILO 3: Emergiendo del Hades (Fundido a negro)
+   ========================================= */
+.estilo-3 {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+.estilo-3 img {
+    /* Esto borra los bordes duros de arriba y abajo, fundiéndolos con el fondo */
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+}
+
+.hero-perfil {
+    background-image: url('./assets/pasillo-hero.webp');
 }
