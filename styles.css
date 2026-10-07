@@ -1337,3 +1337,77 @@ html, body {
 .hero-perfil {
     background-image: url('./assets/pasillo-hero.webp');
 }
+
+/* =========================================
+   AVISO DE TELEMETRÍA (COOKIES)
+   ========================================= */
+.cookie-banner {
+    position: fixed;
+    bottom: -100%; /* Se esconde por defecto debajo de la pantalla */
+    left: 0;
+    width: 100%;
+    background-color: #050505;
+    border-top: 1px solid #D4AF37; /* Tu línea dorada */
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9999;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.9);
+    transition: bottom 0.6s ease-in-out;
+    box-sizing: border-box;
+}
+
+/* La clase que activa la animación para subir el banner */
+.cookie-banner.show {
+    bottom: 0;
+}
+
+.cookie-banner p {
+    margin: 0;
+    color: #888;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.9rem;
+    max-width: 800px;
+    line-height: 1.5;
+}
+
+.cookie-btn {
+    background: transparent;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+    padding: 0.6rem 1.5rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    margin-left: 2rem;
+}
+
+.cookie-btn:hover {
+    background: #D4AF37;
+    color: #050505;
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    .cookie-banner {
+        flex-direction: column;
+        text-align: center;
+        /* El padding de 5rem abajo asegura que libre tu menú móvil */
+        padding: 1.5rem 1.5rem 5rem 1.5rem; 
+    }
+    .cookie-banner p {
+        margin-bottom: 1.5rem;
+        font-size: 0.85rem;
+    }
+    .cookie-btn {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+

@@ -127,3 +127,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Iniciar el efecto de escritura con un ligero retraso de 400ms al cargar
     setTimeout(typeWriter, 400);
 });
+
+// =========================================
+// CONTROL DEL AVISO DE TELEMETRÍA (BLINDADO)
+// =========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const acceptButton = document.getElementById("accept-cookies");
+
+    if (cookieBanner && acceptButton) {
+        // Si el usuario YA aceptó antes, lo ocultamos de inmediato
+        if (localStorage.getItem("telemetria_aceptada") === "true") {
+            cookieBanner.classList.remove("show");
+            cookieBanner.style.display = "none"; // Lo borramos visualmente por completo
+        }
+
+        // Cuando el usuario hace clic en "Entendido"
+        acceptButton.addEventListener("click", function() {
+            localStorage.setItem("telemetria_aceptada", "true");
+            cookieBanner.style.opacity = "0";
+            setTimeout(() => {
+                cookieBanner.style.display = "none";
+            }, 400); // Se desvanece suavemente
+        });
+    }
+});
